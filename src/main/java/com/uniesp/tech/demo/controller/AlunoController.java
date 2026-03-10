@@ -1,47 +1,30 @@
 package com.uniesp.tech.demo.controller;
 
 import com.uniesp.tech.demo.model.Aluno;
-import com.uniesp.tech.demo.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
+import com.uniesp.tech.demo.service.AlunoService;
 
-    @RestController
-    @RequestMapping("/alunos")
-    public class AlunoController {
+@RestController
+@RequestMapping("/alunos")
+public class AlunoController {
 
-        @Autowired
-        AlunoService alunoService;
+    @Autowired
+    private AlunoService service;
 
-        @PostMapping
-        @ResponseStatus(HttpStatus.CREATED)
-        public void criarAluno(@RequestBody Aluno aluno) {
-            alunoService.criarAluno(aluno);
-        }
-        @GetMapping
-        @ResponseStatus(HttpStatus.OK)
-
-        public List<Aluno> listarTodosAlunos(){
-            return alunoService.listarTodosAlunos();
-        }
-
-        @GetMapping("/{id}")
-        @ResponseStatus(HttpStatus.OK)
-        public Optional<Aluno> buscarAlunoPorId(@PathVariable Long id){
-            return alunoService.buscarAlunoPorId(id);
-        }
-
-        @DeleteMapping("/{id}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        public void deletarAlunoPorId(@PathVariable Long id){
-            alunoService.deletarAlunoPorId(id);
-        }
-
-        @PutMapping("/{id}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        public void atualizarAlunoPorId(@PathVariable Long id, @RequestBody Aluno aluno){
-            alunoService.atualizarAlunoPorId(id,aluno);
-        }
+    @PostMapping
+    public void cadastrar(@RequestBody Aluno aluno){
+        service.cadastrarAluno(aluno.getNome(), aluno.getCpf());
     }
+
+    @GetMapping
+    public List<Aluno> listar(){
+        return service.listarAlunos();
+    }
+
+    @DeleteMapping
+    public void deletarTudo(){
+        service.deletarTodos();
+    }
+}

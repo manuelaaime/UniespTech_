@@ -1,13 +1,19 @@
 package com.uniesp.tech.demo.model;
 
 public class Aluno {
+
     private Long id;
-
     private String nome;
-
     private String cpf;
 
-    private String email;
+    public Aluno() {
+    }
+
+    public Aluno(Long id, String nome, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+    }
 
     public Long getId() {
         return id;
@@ -32,14 +38,4 @@ public class Aluno {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 }
-
