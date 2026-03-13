@@ -1,41 +1,31 @@
 package com.uniesp.tech.demo.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Table(name = "aluno")
+@Entity
 public class Aluno {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O nome é obrigatório")
     private String nome;
+
+    @NotBlank(message = "O CPF é obrigatório")
+    @Size(min = 11, max = 11, message = "O CPF deve ter exatamente 11 dígitos")
+    @Pattern(regexp = "\\d{11}", message = "O CPF deve conter apenas números")
+    @Column(unique = true)
     private String cpf;
 
-    public Aluno() {
-    }
-
-    public Aluno(Long id, String nome, String cpf) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 }

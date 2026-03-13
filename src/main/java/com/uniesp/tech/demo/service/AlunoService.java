@@ -4,6 +4,8 @@ import com.uniesp.tech.demo.model.Aluno;
 import com.uniesp.tech.demo.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -12,28 +14,17 @@ public class AlunoService {
     @Autowired
     private AlunoRepository repository;
 
-    public void cadastrarAluno(String nome, String cpf){
-
-        if(nome == null || nome.isEmpty()){
-            throw new RuntimeException("Nome não pode ser vazio");
-        }
-
-        if(cpf == null || cpf.length() != 11){
-            throw new RuntimeException("CPF deve ter 11 dígitos");
-        }
-
-        Aluno aluno = new Aluno();
-        aluno.setNome(nome);
-        aluno.setCpf(cpf);
-
-        repository.salvar(aluno);
+    @Transactional // Garante que a operação seja finalizada no banco
+    public Aluno cadastrarAluno(Aluno aluno) {
+        // O Spring Data JPA usa .save() por padrão
+        return repository.save(aluno);
     }
 
-    public List<Aluno> listarAlunos(){
-        return repository.listar();
+    public List<Aluno> listarAlunos() {
+        return repository.findAll(); // O padrão é .findAll()
     }
 
-    public void deletarTodos(){
-        repository.deletarTodos();
+    public void deletarTodos() {
+        repository.deleteAll(); // O padrão é .deleteAll()
     }
 }

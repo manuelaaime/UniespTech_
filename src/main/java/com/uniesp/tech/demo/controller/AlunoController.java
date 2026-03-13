@@ -1,7 +1,9 @@
 package com.uniesp.tech.demo.controller;
 
 import com.uniesp.tech.demo.model.Aluno;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import com.uniesp.tech.demo.service.AlunoService;
@@ -14,17 +16,18 @@ public class AlunoController {
     private AlunoService service;
 
     @PostMapping
-    public void cadastrar(@RequestBody Aluno aluno){
-        service.cadastrarAluno(aluno.getNome(), aluno.getCpf());
+    public ResponseEntity<Aluno> cadastrarAluno(@Valid @RequestBody Aluno aluno){
+        Aluno alunoSalvo = service.cadastrarAluno(aluno); // Passe o objeto inteiro
+        return ResponseEntity.ok(alunoSalvo);
     }
 
     @GetMapping
-    public List<Aluno> listar(){
+    public List<Aluno> listarAlunos(){
         return service.listarAlunos();
     }
 
     @DeleteMapping
-    public void deletarTudo(){
+    public void deletarTodos(){
         service.deletarTodos();
     }
 }
