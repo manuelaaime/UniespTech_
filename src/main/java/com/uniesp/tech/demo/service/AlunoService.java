@@ -16,15 +16,15 @@ public class AlunoService {
 
     @Transactional // Garante que a operação seja finalizada no banco
     public Aluno cadastrarAluno(Aluno aluno) {
-        // O Spring Data JPA usa .save() por padrão
+
         return repository.save(aluno);
     }
 
     public List<Aluno> listarAlunos() {
-        return repository.findAll(); // O padrão é .findAll()
+        return repository.findAll();
     }
 
     public void deletarTodos() {
-        repository.deleteAll(); // O padrão é .deleteAll()
+        repository.deleteAll(); 
     }
 }

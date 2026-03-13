@@ -17,7 +17,7 @@ public class AlunoController {
 
     @PostMapping
     public ResponseEntity<Aluno> cadastrarAluno(@Valid @RequestBody Aluno aluno){
-        Aluno alunoSalvo = service.cadastrarAluno(aluno); // Passe o objeto inteiro
+        Aluno alunoSalvo = service.cadastrarAluno(aluno);
         return ResponseEntity.ok(alunoSalvo);
     }
 
