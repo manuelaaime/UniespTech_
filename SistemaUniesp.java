@@ -18,7 +18,7 @@ public class SistemaUniesp {
             System.out.println("3 - Deletar Tudo (CUIDADO!)");
             System.out.println("4 - Sair");
             System.out.print("Escolha: ");
-            
+            d
             String opcao = leitor.nextLine();
 
             if (opcao.equals("1")) {

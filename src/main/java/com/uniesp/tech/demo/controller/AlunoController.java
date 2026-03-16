@@ -1,12 +1,14 @@
 package com.uniesp.tech.demo.controller;
 
 import com.uniesp.tech.demo.model.Aluno;
+import com.uniesp.tech.demo.service.AlunoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import com.uniesp.tech.demo.service.AlunoService;
 
 @RestController
 @RequestMapping("/alunos")
@@ -26,8 +28,15 @@ public class AlunoController {
         return service.listarAlunos();
     }
 
-    @DeleteMapping
-    public void deletarTodos(){
-        service.deletarTodos();
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarAlunoPorId(@PathVariable Long id){
+        service.deletarAlunoPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizarAlunoPorId(@PathVariable Long id, @RequestBody Aluno aluno){
+        service.atualizarAlunoPorId(id, aluno);
     }
 }
