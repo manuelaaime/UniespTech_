@@ -63,3 +63,6 @@ Hora de colocar o sistema no mundo real e garantir que ele continue de pé e sau
 
 ## Semana 4: Prova Prática
 Aplicação de uma *Hotfix de Emergência* em tempo real para avaliar o domínio sobre o fluxo DevOps construído.
+
+## Trello do Projeto
+https://trello.com/invite/b/69b851861a665b5cc438f7ae/ATTI7b2951bc905fcd31cdb3004d636d83ca2685FF9B/uniesptech-devops
