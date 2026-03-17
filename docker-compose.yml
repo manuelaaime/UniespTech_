@@ -1,0 +1,24 @@
+services:
+  # O banco de dados
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: manudb  # Coloque a senha que você usa no seu banco
+      POSTGRES_DB: UniespTech
+    ports:
+      - "5433:5432"
+
+  # Sua aplicação Java
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      # Repare que aqui usamos "db" em vez de "localhost"
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/UniespTech
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: manudb
