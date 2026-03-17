@@ -20,6 +20,7 @@ public class AlunoService {
     @Transactional
     public Aluno cadastrarAluno(Aluno aluno) {
         return alunoRepository.save(aluno);
+
     }
 
     public List<Aluno> listarAlunos() {

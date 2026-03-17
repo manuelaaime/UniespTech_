@@ -25,7 +25,7 @@ public class Aluno {
     @NotBlank(message = "O CPF é obrigatório")
     @Size(min = 11, max = 11, message = "O CPF deve ter exatamente 11 dígitos")
     @Pattern(regexp = "\\d{11}", message = "O CPF deve conter apenas números")
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String cpf;
 
 }
