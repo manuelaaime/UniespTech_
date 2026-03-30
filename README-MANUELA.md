@@ -51,5 +51,20 @@ Implementação de regras de negócio via Bean Validation:
 
  A API estará disponível em http://localhost:8080/alunos
 
+### Endpoint de Health Check
+Implementado utilizando o **Spring Boot Actuator**. O sistema agora expõe um endpoint que verifica não apenas se a aplicação está "viva", mas se a conexão com o banco de dados **PostgreSQL** está íntegra.
+
+* **URL:** `/actuator/health`
+* **Configuração:** O arquivo `application.properties` foi ajustado para exibir detalhes completos do status do banco.
+* **Status Esperado:** * `UP`: Aplicação e Banco operacionais.
+   * `DOWN`: Falha crítica em algum componente (ex: Banco fora do ar).
+
+### Logs Estruturados (SLF4J)
+Substituímos o uso de `System.out.println` pela biblioteca de logs estruturados **SLF4J**. Isso permite monitorar o comportamento do sistema em diferentes níveis de severidade:
+
+* **INFO:** Registra fluxos normais, como tentativas e sucessos de cadastro de alunos.
+* **WARN:** Alerta sobre ações sensíveis, como a deleção de registros.
+* **ERROR:** Captura falhas críticas, como exceções de banco de dados e erros de validação de CPF.
+
 ## Trello do Projeto
 https://trello.com/invite/b/69b851861a665b5cc438f7ae/ATTI7b2951bc905fcd31cdb3004d636d83ca2685FF9B/uniesptech-devops
